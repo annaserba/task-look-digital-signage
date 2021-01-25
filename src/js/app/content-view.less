@@ -3,4 +3,24 @@
 content-view {
   display: block;
   border-left: 1px solid @c-gray;
+  
+  .content-view{
+    &__item{
+      border-bottom: 1px solid @c-gray;
+      &_active{
+        background: @c-gray-light;
+      }
+    }
+    &__search{
+      padding-bottom: 10px;
+      border-bottom: 1px solid @c-gray;
+    }
+    &__order{
+      padding-top: 10px;
+      border-top: 1px solid @c-gray;
+    }
+    &__add{
+      padding-top: 10px;
+    }
+  }
 }

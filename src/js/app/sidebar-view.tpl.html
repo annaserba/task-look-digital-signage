@@ -1,1 +1,15 @@
-Sidebar
+<div ng-if="model">Selected: {{ model.title }}</div>
+<div ng-if="model">
+    Tags:
+    <div class="sidebar-view__tags" ng-repeat="(key, tag) in model.tags">
+        <span class="sidebar-view__tag">
+            {{ tag }} 
+            <button ng-click="deleteTag($event, key)">X</button>
+        </span>
+    </div>
+</div>
+<div ng-show="model" class="sidebar-view__add">
+    New tag <input ng-keydown="onKeyAdd($event)" ng-model="addTag">
+    <button ng-click="onClickAdd($event)">Add</button>
+</div>
+

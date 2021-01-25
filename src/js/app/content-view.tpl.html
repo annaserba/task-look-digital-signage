@@ -1,2 +1,25 @@
 <some-1></some-1>
-Content
+<div class="content-view__order">
+    Order: 
+    <select ng-change="filterSortApply()" ng-model="order">
+        <option value="title">Title</option>
+        <option value="date">Date</option>
+    </select>
+</div>
+<div class="content-view__only-date">
+    Only date <input ng-model="onlyDate" type="checkbox">
+</div>
+<div class="content-view__search">
+    Search <input ng-model="search" ng-change="filterSortApply()">
+</div>
+<div class="content-view__item" 
+    ng-repeat="(key, item) in model" ng-click="onItemClick($event,item.id)">
+    <div ng-class="selected && selected.id === item.id ? 'content-view__item_active' : ''">
+        <div ng-if="!onlyDate">Title: {{ item.title }}</div>
+        <div>Date: {{ item.date | date:'dd.MM.yyyy, HH:mm'}}</div>
+    </div>
+</div>
+<div class="content-view__add">
+    New title <input ng-keydown="onKeyAdd($event)" ng-model="add">
+    <button ng-click="onClickAdd($event)">Add</button>
+</div>
