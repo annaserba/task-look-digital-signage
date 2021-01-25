@@ -16,8 +16,7 @@ angular.module("app", ["templates"])
 
     function contentView($scope) {
       $scope.filterSortApply = function(){
-        $scope.model = $scope.data.slice();
-        $scope.model = $scope.model
+        $scope.model = $scope.data.slice()
         .filter(m => m.title.toUpperCase().indexOf($scope.search.toUpperCase())!==-1)
         .sort((a, b) => {
           if(a[$scope.order] > b[$scope.order]){
@@ -29,7 +28,7 @@ angular.module("app", ["templates"])
           return 0;
         });
 
-        $scope.$emit('filterSortApply', $scope.model);
+        $scope.$emit('filterSortApply', $scope.data);
       };
 
       $scope.onClickAdd = function($event){
@@ -132,7 +131,6 @@ angular.module("app", ["templates"])
       controller: ["$scope", some1],
     };
     function some1($scope){
-      $scope.model = $scope.$parent.model;
       $scope.data = $scope.$parent.data;
     }
   })
@@ -145,7 +143,6 @@ angular.module("app", ["templates"])
     };
 
     function some2($scope){
-      $scope.model = $scope.$parent.model;
       $scope.data = $scope.$parent.data;
     }
   })
@@ -158,7 +155,6 @@ angular.module("app", ["templates"])
     };
 
     function some3($scope){
-      $scope.model = $scope.$parent.model;
       $scope.data = $scope.$parent.data;
     }
   })
@@ -172,7 +168,7 @@ angular.module("app", ["templates"])
 
     function summaryView($scope, $rootScope){
       const setModel = function(data){
-        $scope.lastElem = data[data.length-1];
+        $scope.lastElem = data.sort((a, b) => a.data - b.data)[data.length-1];
         $scope.tags = [];
         angular.forEach(data, (value) => {
           angular.forEach(value.tags, (tag) =>{
@@ -181,7 +177,7 @@ angular.module("app", ["templates"])
             });
         });
       };
-      setModel($scope.$parent.model);
+      setModel($scope.$parent.data);
       $rootScope.$on('filterSortApply', function(event, data) { 
         setModel(data);
       });
