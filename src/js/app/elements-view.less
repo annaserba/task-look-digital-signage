@@ -2,9 +2,50 @@
 
 elements-view {
   display: block;
-}
-
-.elements-view__ctrls {
-  padding: 10px;
-  border-bottom: 1px solid @c-gray;
+  .elements-view{
+    &__ctrls{
+      padding: 10px;
+      border-bottom: 1px solid @c-gray;
+    }
+    &__button{
+      width: 90%;
+      padding: 10px;
+      margin: 5%;
+      border-radius: 3px;
+      background: transparent;
+      &:hover{
+        background: @c-gray-light;
+        border-color:@c-gray;
+      }
+    }
+    &__items{
+      overflow: hidden; 
+      padding: 5px;
+      text-overflow: ellipsis; 
+      white-space: nowrap;
+      border-top: 1px solid @c-gray;
+      &:last-child{
+        border-bottom: 1px solid @c-gray;
+      }
+      &:hover{
+        background: @c-gray-light;
+        .elements-view{
+          &__square{
+            display: inline;
+          }
+        }
+      }
+    }
+    &__item{
+      padding-left: 5px;
+    }
+    &__square{
+      float: right;
+      background: @c-gray;
+      width: 24px;
+      height: 24px;
+      margin-left: 10px;
+      display: none;
+    }
+  }
 }
